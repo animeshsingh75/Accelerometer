@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
             getAccelerometer(event)
+        }else if (event?.sensor?.type==Sensor.TYPE_GYROSCOPE){
+            getGyro(event)
         }
     }
 
@@ -41,30 +43,49 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val xVal = event.values[0]
         val yVal = event.values[1]
         val zVal = event.values[2]
+//        val tvXAxis=findViewById<TextView>(R.id.tvXAxis)
+//        val tvYAxis=findViewById<TextView>(R.id.tvYAxis)
+//        val tvZAxis=findViewById<TextView>(R.id.tvZAxis)
+        val currentXAxis=findViewById<TextView>(R.id.currentXAxis)
+        val currentYAxis=findViewById<TextView>(R.id.currentYAxis)
+        val currentZAxis=findViewById<TextView>(R.id.currentZAxis)
+        currentXAxis.text=xVal.toString()
+        currentYAxis.text=yVal.toString()
+        currentZAxis.text=zVal.toString()
+//        if (prevX == null) {
+//            prevX = xVal
+//            prevY = yVal
+//            prevZ = zVal
+//            diffX = 0F
+//            diffY = 0F
+//            diffZ = 0F
+//        } else {
+//            if (diffX!! < abs(xVal - prevX!!)) {
+//                diffX = abs(xVal - prevX!!)
+//                tvXAxis.text=diffX.toString()
+//            }
+//            if (diffY!! < abs(yVal - prevY!!)) {
+//                diffY = abs(yVal - prevY!!)
+//                tvYAxis.text=diffY.toString()
+//            }
+//            if (diffZ!! < abs(zVal - prevZ!!)) {
+//                diffZ = abs(zVal - prevZ!!)
+//                tvZAxis.text=diffZ.toString()
+//            }
+//        }
+    }
+
+    private fun getGyro(event: SensorEvent) {
+        // Movement
+        val xVal = event.values[0]
+        val yVal = event.values[1]
+        val zVal = event.values[2]
         val tvXAxis=findViewById<TextView>(R.id.tvXAxis)
         val tvYAxis=findViewById<TextView>(R.id.tvYAxis)
         val tvZAxis=findViewById<TextView>(R.id.tvZAxis)
-        if (prevX == null) {
-            prevX = xVal
-            prevY = yVal
-            prevZ = zVal
-            diffX = 0F
-            diffY = 0F
-            diffZ = 0F
-        } else {
-            if (diffX!! < abs(xVal - prevX!!)) {
-                diffX = abs(xVal - prevX!!)
-                tvXAxis.text=diffX.toString()
-            }
-            if (diffY!! < abs(yVal - prevY!!)) {
-                diffY = abs(yVal - prevY!!)
-                tvYAxis.text=diffY.toString()
-            }
-            if (diffZ!! < abs(zVal - prevZ!!)) {
-                diffZ = abs(zVal - prevZ!!)
-                tvZAxis.text=diffZ.toString()
-            }
-        }
+        tvXAxis.text=xVal.toString()
+        tvYAxis.text=yVal.toString()
+        tvZAxis.text=zVal.toString()
     }
 
     override fun onResume() {
@@ -72,6 +93,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager?.registerListener(
             this,
             sensorManager?.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
+        sensorManager?.registerListener(
+            this,
+            sensorManager?.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
             SensorManager.SENSOR_DELAY_NORMAL
         )
     }

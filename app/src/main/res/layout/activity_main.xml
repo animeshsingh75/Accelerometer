@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/currentXAxis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="X-Axis"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/currentYAxis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentXAxis"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Y-Axis"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/currentZAxis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentYAxis"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Z-Axis"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tvXAxis"
