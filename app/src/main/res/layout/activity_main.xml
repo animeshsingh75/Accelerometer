@@ -66,4 +66,14 @@
         android:padding="10dp"
         android:text="Z-Axis"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/airPressure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Z-Axis"
+        android:textSize="18sp" />
 </RelativeLayout>
